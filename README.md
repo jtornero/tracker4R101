@@ -55,12 +55,17 @@ mobile_id;point_id;lat;lon
 To show the tracked points over a map, just load the file tracking.csv
 as a CSV layer in QGIS enabling file whatching, so everytime a new point is appended by TRACKER.py it is shown
 
+If you want to track many runners/vehicles at the same time, in priciple it should be as easy as running the
+DEVICE.py script in each of the devices, ensuring they have properly set the mobile_id variable to something meaningful
+(of course, the mobile_id MUST be different to make sense) and then set layer style in QGIS to categorized, 
+categorizing the data by mobile_id field.
+
 TODO:
 =====
 A lot, and for instance
 - Because all data tranmsission will be through GSM connections, and because high chances of 
   running into no coverage zones, store-and-send procedures for positions.
-
+- Convert the track points to line automagically
   
 
 

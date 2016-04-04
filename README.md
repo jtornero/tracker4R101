@@ -1,8 +1,18 @@
 # tracker4R101
 
-A simple tracker for Ronda's 101 km ultratrail (or whatever) based on Python, MQTT and QGIS
-==============================================================================
-This is a simple, yet functional proof of concept
+A simple mobile device tracker based on Python, MQTT and QGIS.
+==============================================================
+
+The motivation is to have a simple way to be tracked while running, walking or trekking. In my case, I'm going to run (well, I think I should say *walk*) the ultratrail
+101 Km of Ronda in Malaga, South Spain. I want to have some way to be tracked from home (just recording the track
+is not a problem with nice pieces of software like ORUX MAPS) and this is a simple, yet functional proof of concept.
+USE IT AT YOUR OWN RISK, AS IT IS A EXPERIMENTAL AND EDUCATIONAL SOFTWARE NOT INTENDED FOR ANY SAFETY/EMERGENCY APPLICATION
+
+La motivación es tener una manera sencilla de ser seguido desde casa mientras se corre, pasea o hace senderismo.
+En mi caso, voy a correr (bueno, yo diría *andar*) la prueba de ultratrail 101 Km de Ronda. Me interesa tener un medio para 
+poder ser seguido desde casa y esta es una prueba de concepto simple aunque funcional.
+ESTE ES UN SOFTWARE EXPERIMENTAL Y EDUCACIONAL, SIN INTENCIÓN DE SER USADO PARA NINGUNA APLICACIÓN DE SEGURIDAD/EMERGENCIA. ÚSALO BAJO TU PROPIA RESPONSABILIDAD
+
 
 LICENSE
 =======
@@ -53,7 +63,7 @@ header. Now the fields are:
 mobile_id;point_id;lat;lon
 
 To show the tracked points over a map, just load the file tracking.csv
-as a CSV layer in QGIS enabling file whatching, so everytime a new point is appended by TRACKER.py it is shown
+as a CSV layer in QGIS enabling file whatching, so everytime a new point is appended by TRACKER.py it is shown on the map.
 
 If you want to track many runners/vehicles at the same time, in priciple it should be as easy as running the
 DEVICE.py script in each of the devices, ensuring they have properly set the mobile_id variable to something meaningful
@@ -66,6 +76,7 @@ A lot, and for instance
 - Because all data tranmsission will be through GSM connections, and because high chances of 
   running into no coverage zones, store-and-send procedures for positions.
 - Convert the track points to line automagically
+- Be able to show the last point received with another style
   
 
 

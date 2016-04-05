@@ -49,6 +49,10 @@ broker_port=
 user=
 passwd=
 
+#Connection
+
+mqtt_client.username_pw_set(user,passwd)
+mqtt_client.connect(broker,broker_port)
 
 #The topic for the data will be TRACK but use what you want; must match the DEVICE script topic
 mqtt_client.subscribe('TRACK')

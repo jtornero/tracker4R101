@@ -57,8 +57,6 @@ Then run the DEVICE.py script in your cell phone. I suggest you to use QPython Q
 
 http://qpython.com/#qrcode
 
-Yo can do it by copy-pasting the code. I suggest you to remove the license information, generate the QRCode with ECC set to L and Size to 10 and open the resulting QRCode in a new browser tab to be able to scan it with the phone
-
 On tracker side, you must run TRACKER.py script to get the data from the mqtt broker.
 The script saves the received data to a file called tracking.csv. You could create a file before with a suitable
 header. Now the fields are:
@@ -69,7 +67,8 @@ as a CSV layer in QGIS enabling file whatching, so everytime a new point is appe
 
 If you want to track many runners/vehicles at the same time, in priciple it should be as easy as running the
 DEVICE.py script in each of the devices, ensuring they have properly set the mobile_id variable to something meaningful
-(of course, the mobile_id MUST be different to make sense) and then set layer style in QGIS to categorized, categorizing by joining mobile_id and last field.
+(of course, the mobile_id MUST be different to make sense) and then set layer style in QGIS to categorized, 
+categorizing the data by mobile_id field.
 
 TODO:
 =====
@@ -77,6 +76,7 @@ A lot, and for instance
 - Because all data tranmsission will be through GSM connections, and because high chances of 
   running into no coverage zones, store-and-send procedures for positions.
 - Convert the track points to line automagically
+- Be able to show the last point received with another style
   
 
 

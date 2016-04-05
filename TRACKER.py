@@ -29,19 +29,47 @@
 
 #/usr/bin/env python
 
-
+import csv
 import paho.mqtt.client as mqtt
 
 def on_message(client, userdata, message):
-  print message.payload
-  ide,pid,lat,lon=message.payload.split(';')
-  if (lat!='0' and lon!='0'):
     
-    fichero=open('tracking.csv','a')
-    fichero.write(message.payload+'\n')
+    print "RECEIVED ->", message.payload,
+    
+    ide, pid, lat, lon = message.payload.split(';')
+    
+    if (lat!='0' and lon!='0'):
+        print 'LOGGED'
+        tracking_file=open('tracking.csv', 'r')
+        
+        #reads file
+        reader = csv.reader(tracking_file, delimiter=';')
+        lines = [line for line in reader if len(line) > 0] #So if last line is just a \n forgets it
+        tracking_file.close()
+        #removes 'LAST' from last received line
+        lines[-1][4]=''
+        # Creates new line
+        new_data = [ide, pid, lat, lon, 'LAST']
+        lines.append(new_data)
+        
+        #
+        tracking_file = open('tracking.csv', 'w')
+        writer = csv.writer(tracking_file, delimiter = ';', quoting = csv.QUOTE_NONE)
+        writer.writerows(lines)
+        tracking_file.close()
+        
+    else:
+        print "NOT LOGGED"
+        
+        
 
+mqtt_client = mqtt.Client()
 
-mqtt_client=mqtt.Client()
+#create file to store tracking points
+tracking_file=open('./tracking.csv', 'w')
+tracking_file.write('mobile_id;point_id;lat;lon;status\n')
+tracking_file.close()
+
 
 #Here goes your broker IP/Address and port, username, and password if appliable
 broker=

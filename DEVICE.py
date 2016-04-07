@@ -28,29 +28,28 @@
 # For more information, please refer to <http://unlicense.org/>
 
 import paho.mqtt.client as mqtt
+import paho.mqtt.publish as publish
 import androidhelper
 import time
 
 #Here goes your broker IP/Address and port, username, and password if appliable
-broker=
-broker_port=
-user=
-passwd='
+broker='m21.cloudmqtt.com'
+broker_port=18297
+user='rsdwogwr'
+passwd='BxxN4k8xQCF4'
 #Just a name to identify the runner, vehicle...
 mobile_id = 'MOB001'
 
 # MQTT inicialzation
 mqtt_client = mqtt.Client()
 mqtt_client.username_pw_set(user,passwd)
-
+mqtt_client.connect(broker,broker_port)
 #Android inicialization
 droid = androidhelper.Android()
-droid.startLocating()
-time.sleep(30) # For initial fix
-
+point_id=0
 
 while True:
-    
+    droid.startLocating()
     time.sleep(10) # For walking, running, etc 5-30 seconds should be appropiate
     loc = droid.readLocation()[1]
     lat = 0
@@ -74,11 +73,11 @@ while True:
         try:
             mqtt_client.connect(broker,broker_port)
             #The topic for the data will be TRACK but use what you want; must match the TRACKER script topic
-            mqtt_client.publish('TRACK',msg)
+            publish.single('TRACK',msg,qos=2,hostname=broker,port=broker_port,auth={'username':user,'password':passwd})
             print 'DATA SENT->',source,msg
             mqtt_client.disconnect()
-        except:
-            print "Error while connecting to MQTT broker"
+        except Exception as e:
+            print e, "Error while connecting to MQTT broker"
     else:
         print "Location not available. Check your device settings"
         

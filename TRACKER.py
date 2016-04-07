@@ -72,18 +72,17 @@ tracking_file.close()
 
 
 #Here goes your broker IP/Address and port, username, and password if appliable
-broker=
-broker_port=
-user=
-passwd=
-
+broker='m21.cloudmqtt.com'
+broker_port=18297
+user='rsdwogwr'
+passwd='BxxN4k8xQCF4'
 #Connection
 
 mqtt_client.username_pw_set(user,passwd)
 mqtt_client.connect(broker,broker_port)
 
 #The topic for the data will be TRACK but use what you want; must match the DEVICE script topic
-mqtt_client.subscribe('TRACK')
+mqtt_client.subscribe('TRACK',qos=2)
 
 mqtt_client.on_message=on_message
 mqtt_client.loop_forever()

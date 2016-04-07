@@ -33,10 +33,10 @@ import androidhelper
 import time
 
 #Here goes your broker IP/Address and port, username, and password if appliable
-broker='m21.cloudmqtt.com'
-broker_port=18297
-user='rsdwogwr'
-passwd='BxxN4k8xQCF4'
+broker=
+broker_port=
+user=
+passwd=
 #Just a name to identify the runner, vehicle...
 mobile_id = 'MOB001'
 

@@ -72,10 +72,10 @@ tracking_file.close()
 
 
 #Here goes your broker IP/Address and port, username, and password if appliable
-broker='m21.cloudmqtt.com'
-broker_port=18297
-user='rsdwogwr'
-passwd='BxxN4k8xQCF4'
+broker=
+broker_port=
+user=
+passwd=
 #Connection
 
 mqtt_client.username_pw_set(user,passwd)

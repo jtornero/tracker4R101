@@ -27,7 +27,7 @@
 
 # For more information, please refer to <http://unlicense.org/>
 
-import paho.mqtt.client as mqtt
+iimport paho.mqtt.client as mqtt
 import paho.mqtt.publish as publish
 import androidhelper
 import time
@@ -38,7 +38,7 @@ broker_port=
 user=
 passwd=
 #Just a name to identify the runner, vehicle...
-mobile_id = 'MOB001'
+mobile_id = 
 
 # MQTT inicialzation
 mqtt_client = mqtt.Client()
@@ -50,30 +50,29 @@ point_id=0
 
 while True:
     droid.startLocating()
-    time.sleep(10) # For walking, running, etc 5-30 seconds should be appropiate
+    time.sleep(120) # For walking, running, etc 5-30 seconds should be appropiate
     loc = droid.readLocation()[1]
     lat = 0
     lon = 0
     if loc != {}:
         try:
             data = loc['gps']
-            point_id += 1
             source='GPS'
         except KeyError:
             data = loc['network']
             point_id += 1
             source='NETWORK'
      
-        
+        timestamp=int(time.time())
         lat = data['latitude'] 
         lon = data['longitude']
 
-        msg = '%s;%i;%s;%s' %(mobile_id, point_id, lat, lon)
+        msg = '{"tid":"%s","tst":%i,"lat":%s,"lon":%s}' %(mobile_id, timestamp, lat, lon)
     
         try:
             mqtt_client.connect(broker,broker_port)
             #The topic for the data will be TRACK but use what you want; must match the TRACKER script topic
-            publish.single('TRACK',msg,qos=2,hostname=broker,port=broker_port,auth={'username':user,'password':passwd})
+            publish.single('YOUR TOPIC HERE',msg,qos=2,hostname=broker,port=broker_port,auth={'username':user,'password':passwd})
             print 'DATA SENT->',source,msg
             mqtt_client.disconnect()
         except Exception as e:

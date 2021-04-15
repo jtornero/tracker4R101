@@ -27,7 +27,7 @@
 
 # For more information, please refer to <http://unlicense.org/>
 
-iimport paho.mqtt.client as mqtt
+import paho.mqtt.client as mqtt
 import paho.mqtt.publish as publish
 import androidhelper
 import time
